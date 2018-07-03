@@ -1,0 +1,45 @@
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#f-div {
+  width: 50%;
+  background-color: #ffff3e;
+  position: relative;
+}
+
+#f-div span {
+  display: none;
+  position: absolute;
+  font-size: 1em;
+  background-color: #bfbbbd;
+  color: #fff;
+  padding: 5px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+}
+
+#f-div span span {
+  display: none;
+  position: absolute;
+  background-color: #ff4b43;
+}
+
+#s-div {
+  width: 400px;
+  margin-top: 20px;
+}
+
+#s-div input[type="text"] {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 5px 5px;
+}

@@ -1,0 +1,14 @@
+{
+  "name": "js-testing-standart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "common.js",
+  "scripts": {
+    "test": "standart"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "standart": "^6.1.0"
+  }
+}
