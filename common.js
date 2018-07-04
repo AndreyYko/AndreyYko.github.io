@@ -2,7 +2,6 @@ const body = document.body
 const element = document.querySelector('#f-div')
 element.style.height = `${element.offsetWidth}px`
 let count = 0
-let currentTagText = ''
 element.onclick = (e) => {
   count++
   const span = document.createElement('span')
@@ -65,7 +64,6 @@ element.onclick = (e) => {
       closeTag(buttonClose.getAttribute('id'), event)
     }, false)
     span.appendChild(buttonClose)
-    currentTagText = tagText
   }
 }
 
@@ -81,9 +79,8 @@ function move (span, e) {
   body.onmousemove = (e) => {
     const closeButton = document.getElementById(`close-${span.getAttribute('id')}`)
     const coordinate = getMouseCoordinate(element, e)
-    // console.log((element.offsetWidth - 5) + 23)
-    if (coordinate.x + span.offsetWidth / 2 >= element.offsetWidth - 5) {
-      if (coordinate.y + span.offsetHeight >= element.offsetHeight - 5) {
+    if (coordinate.x + span.offsetWidth / 2 >= element.offsetWidth - 5) { // right border + corners
+      if (coordinate.y + span.offsetHeight >= element.offsetHeight - 5) { 
         span.style.top = `${(element.offsetHeight - 5) - span.offsetHeight}px`
         span.style.left = `${(element.offsetWidth - 5) - span.offsetWidth}px`
       } else if (coordinate.y - span.offsetHeight / 2 <= 5) {
@@ -93,7 +90,7 @@ function move (span, e) {
         span.style.top = `${coordinate.y - span.offsetHeight / 2}px`
         span.style.left = `${(element.offsetWidth - 5) - span.offsetWidth}px`
       }
-    } else if (coordinate.x - span.offsetWidth / 2 <= 5) {
+    } else if (coordinate.x - span.offsetWidth / 2 <= 5) { // left border + corners
       if (coordinate.y + span.offsetHeight >= element.offsetHeight - 5) {
         span.style.top = `${(element.offsetHeight - 5) - span.offsetHeight}px`
         span.style.left = `5px`
@@ -104,7 +101,7 @@ function move (span, e) {
         span.style.top = `${coordinate.y - span.offsetHeight / 2}px`
         span.style.left = `5px`
       }
-    } else if (coordinate.y + span.offsetHeight >= element.offsetHeight - 5) {
+    } else if (coordinate.y + span.offsetHeight >= element.offsetHeight - 5) { // bottom border + moving close button
       span.style.top = `${(element.offsetHeight - 5) - span.offsetHeight}px`
       span.style.left = `${coordinate.x - span.offsetWidth / 2}px`
       if (closeButton.style.display === 'block') {
@@ -116,7 +113,7 @@ function move (span, e) {
           closeButton.style.right = `-22px`
         }
       }
-    } else if (coordinate.y - span.offsetHeight / 2 <= 5) {
+    } else if (coordinate.y - span.offsetHeight / 2 <= 5) { // top border + moving close button
       span.style.top = `5px`
       span.style.left = `${coordinate.x - span.offsetWidth / 2}px`
       if (closeButton.style.display === 'block') {
@@ -128,7 +125,7 @@ function move (span, e) {
           closeButton.style.right = `-22px`
         }
       }
-    } else {
+    } else { // free moving
       if (closeButton.style.display === 'block') {
         if (+closeButton.style.right.slice(0, 3) < 0 && coordinate.x + span.offsetWidth / 2 >= (element.offsetWidth - 10) - 23) {
           closeButton.style.right = ``
